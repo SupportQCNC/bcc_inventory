@@ -112,7 +112,7 @@ const AdminZoneDetails = () => {
   }
 
   return (
-    <div className="p-4 max-w-4xl mx-auto text-gray-300 bg-gray-800 rounded-lg shadow-md">
+    <div className="p-4  mx-auto text-gray-300 bg-gray-300 rounded-lg shadow-md">
       <input
         ref={barcodeInputRef}
         type="text"
@@ -125,9 +125,9 @@ const AdminZoneDetails = () => {
       {zone ? (
         <div>
           {/* En-tête */}
-          <div className="mb-4">
+          <div className="mb-4 text-gray-800">
             <h1 className="text-2xl font-bold">{zone.nom}</h1>
-            <p className="text-sm text-gray-400 mb-2">
+            <p className="text-sm text-gray-900 mb-2">
               {zone.designation} - {zone.lieu}
             </p>
             <p>{zone.observation}</p>
@@ -135,13 +135,13 @@ const AdminZoneDetails = () => {
 
           {/* Parties de la Zone */}
           <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-3">Parties de la Zone</h2>
+            <h2 className="text-lg font-semibold mb-3 text-gray-800">Parties de la Zone</h2>
             {zone.parties && zone.parties.length > 0 ? (
               <div className="flex justify-between flex-1">
                 {zone.parties.map((partie, index) => (
                   <div
                     key={index}
-                    className="p-3 bg-gray-700 rounded-md shadow-md w-1/3"
+                    className="p-3 bg-gray-700 rounded-md shadow-md w-1/3 m-2"
                   >
                     <h3 className="text-lg font-bold mb-1">{partie.type}</h3>
                     <p className="text-sm mb-2">Status: {partie.status}</p>

@@ -368,6 +368,7 @@ const generatePDFForInventory = asyncHandler(async (req, res) => {
 });
 
 
+
 export {
   getInventories,
   createInventory,

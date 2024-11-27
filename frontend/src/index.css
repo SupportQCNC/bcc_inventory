@@ -17,11 +17,11 @@
 
 /* Boutons */
 .btn {
-  @apply px-4 py-2 flex justify-center items-center text-sm font-medium text-secondaryColor rounded-md bg-primaryColor hover:bg-highlightColor transition-all duration-150 ease-in-out;
+  @apply px-4 py-2 flex justify-center items-center text-sm font-medium text-secondaryColor rounded-md bg-primaryColor transition-all duration-150 ease-in-out;
 }
 
 .btn:hover {
-  @apply bg-accentColor text-accentColor;
+  @apply bg-blue-400 text-accentColor;
 }
 
 /* Arrière-plan */
@@ -45,11 +45,11 @@ input {
 
 /* Tableaux */
 table {
-  @apply w-full border-collapse border border-gray-700 bg-grayColor text-sm;
+  @apply w-full border-collapse border border-gray-700 bg-gray-300 text-sm;
 }
 
 th {
-  @apply py-2 px-3 text-left border-b border-gray-600 bg-grayColor text-secondaryColor font-medium;
+  @apply py-2 px-3 text-left border-b border-gray-600 bg-gray-400 text-secondaryColor font-medium;
 }
 
 td {
@@ -68,14 +68,7 @@ tbody tr:last-child td {
   @apply border-none;
 }
 
-/* Liens */
-a {
-  @apply text-accentColor text-sm hover:underline transition duration-150;
-}
 
-a:hover {
-  @apply text-highlightColor;
-}
 
 /* Loader */
 .loader {

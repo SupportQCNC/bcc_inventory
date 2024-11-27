@@ -57,6 +57,17 @@ export const zonesApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Zone'],
     }),
+
+    // Get and update status of a zone part by barcode
+    updateZonePartStatus: builder.mutation({
+      query: (data) => ({
+        url: `${ZONES_URL}/part-status`,
+        method: 'PUT',
+        body: data,
+        credentials: 'include',
+      }),
+      invalidatesTags: ['Zone'], // Invalidate zone data after status update
+    }),
   }),
 });
 
@@ -67,4 +78,5 @@ export const {
   useGetZoneByIdQuery,
   useUpdateZoneMutation,
   useDeleteZoneMutation,
+  useUpdateZonePartStatusMutation, // New hook for updating zone part status
 } = zonesApiSlice;

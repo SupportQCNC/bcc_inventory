@@ -100,8 +100,69 @@ const deleteZone = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get and update status of a zone part by barcode
+// @route   PUT /api/zones/part-status
+// @access  Public
+const getAndUpdateZonePartStatus = asyncHandler(async (req, res) => {
+  const { codeBarre, newStatus } = req.body;
+
+  if (!codeBarre) {
+    res.status(400);
+    throw new Error("Veuillez fournir un code-barres.");
+  }
+
+  // Recherche de la zone contenant la partie avec le code-barre
+  const zone = await Zone.findOne({ "parties.codeBarre": codeBarre });
+
+  if (!zone) {
+    res.status(404);
+    throw new Error("Aucune zone trouvée contenant une partie avec ce code-barres.");
+  }
+
+  // Trouver la partie spécifique dans la zone
+  const partie = zone.parties.find((p) => p.codeBarre === codeBarre);
+  if (!partie) {
+    res.status(404);
+    throw new Error("Partie introuvable dans la zone.");
+  }
+
+  // Si `newStatus` est fourni, mettre à jour le statut de la partie
+  if (newStatus) {
+    if (!['À faire', 'En cours', 'Terminé'].includes(newStatus)) {
+      res.status(400);
+      throw new Error("Statut invalide. Utilisez 'À faire', 'En cours' ou 'Terminé'.");
+    }
+
+    partie.status = newStatus;
+
+    // Sauvegarder la zone après modification
+    await zone.save();
+
+    res.status(200).json({
+      message: "Statut de la partie mis à jour avec succès.",
+      partie: {
+        type: partie.type,
+        codeBarre: partie.codeBarre,
+        status: partie.status,
+      },
+    });
+  } else {
+    // Si `newStatus` n'est pas fourni, retourner simplement les détails actuels
+    res.status(200).json({
+      message: "Statut actuel de la partie récupéré avec succès.",
+      partie: {
+        type: partie.type,
+        codeBarre: partie.codeBarre,
+        status: partie.status,
+      },
+    });
+  }
+});
+
+
 export {
   getZones,
+  getAndUpdateZonePartStatus,
   createZone,
   getZoneById,
   updateZone,

@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useGetInventoryByIdQuery } from "../../slices/inventorySlice";
 import { useGetRecordsQuery } from "../../slices/recordSlice";
+
 import Barcode from "react-barcode"; // Importer Barcode
 
 const AdminInventoryDetails = () => {
@@ -79,7 +80,7 @@ const AdminInventoryDetails = () => {
   );
 
   return (
-    <div className="p-4 max-w-7xl mx-auto text-gray-300 bg-gray-800 rounded-lg shadow-md">
+    <div className="p-4  mx-auto text-gray-800  rounded-lg shadow-md">
       {inventory ? (
         <div>
           {/* En-tête */}
@@ -99,10 +100,18 @@ const AdminInventoryDetails = () => {
               </span>
               <button
                 onClick={handleGeneratePDF}
-                className={`py-1 px-4 text-sm font-semibold text-white rounded ${"bg-blue-600 hover:bg-blue-700"}`}
+                className={`py-1 px-4 text-sm font-semibold text-white rounded ${"bg-blue-500 hover:bg-blue-700"}`}
               >
                 Générer PDF
               </button>
+              <Link 
+                
+                
+              to="/forgot-password"
+              className={`py-1 px-4 text-sm font-semibold text-white rounded ${"bg-green-500 hover:bg-green-700"}`}
+              >
+               Demmarrer
+              </Link>
             </div>
           </div>
 
@@ -128,10 +137,10 @@ const AdminInventoryDetails = () => {
                 <div
                   key={zone._id}
                   onClick={() => navigate(`/admin/zones/${zone._id}`)}
-                  className="p-3 bg-gray-700 rounded-md shadow-md cursor-pointer hover:bg-gray-600"
+                  className="p-3 bg-gray-200 rounded-md shadow-md cursor-pointer hover:bg-blue-400"
                 >
                   <h3 className="text-lg font-bold mb-1">{zone.nom}</h3>
-                  <p className="text-sm text-gray-400 mb-2">
+                  <p className="text-sm text-gray-800 mb-2">
                     {zone.designation} - {zone.lieu}
                   </p>
                   {zone.codeBarre && (
@@ -197,14 +206,14 @@ const AdminInventoryDetails = () => {
                 </tbody>
               </table>
             ) : (
-              <p className="text-gray-400">
+              <p className="text-red-700">
                 Aucun enregistrement trouvé pour cet inventaire.
               </p>
             )}
           </div>
         </div>
       ) : (
-        <div className="text-center text-lg text-gray-500">
+        <div className="text-center text-lg text-red-700">
           Aucun détail d'inventaire trouvé.
         </div>
       )}
