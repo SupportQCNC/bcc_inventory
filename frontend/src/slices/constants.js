@@ -1,5 +1,5 @@
 export const BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://api.krysto.io'
+  ? 'https://api.robot-nc.com'
   : 'http://localhost:4000';
 
 export const USERS_URL = `${BASE_URL}/users`;
