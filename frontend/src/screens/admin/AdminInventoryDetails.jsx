@@ -28,7 +28,7 @@ const AdminInventoryDetails = () => {
     try {
       // Utilisation d'Axios pour la requête
       const response = await axios.get(
-        `http://localhost:4000/inventories/${inventoryId}/generate-pdf`,
+        `https://robot-nc.com/inventories/${inventoryId}/generate-pdf`,
         {
           responseType: "blob", // Reçoit la réponse en tant que Blob
           headers: {
